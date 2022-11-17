@@ -1,0 +1,96 @@
+import java.util.*;
+class Musix
+{
+String Album_name;
+String songs[];
+String Composer;
+double rating;
+Scanner s=new Scanner(System.in);
+Musix()
+{
+Album_name="";
+songs=new String[10];
+Composer="";
+rating=0.0;
+}
+void read()
+{
+System.out.println("Enter Album name");
+Album_name=s.nextLine();
+System.out.println("Enter songs");
+for(int i=0;i<10;i++)
+{
+songs[i]=s.nextLine();
+}
+System.out.println("Enter Composer");
+Composer=s.nextLine();
+System.out.println("Enter rating");
+rating=s.nextDouble();
+}
+void search(String a)
+{
+for(int i=0;i<10;i++)
+{
+if(songs[i].equalsIgnoreCase(a))
+{
+System.out.println("The song is present");
+return;
+}
+}
+throw new NullPointerException("The song is not present");
+}
+void similarSongs()
+{
+for(int i=0;i<10;i++)
+{
+System.out.println(songs[i]);
+}
+}
+void popularAlbum()
+{
+if(rating>4)
+{
+System.out.println("The album is popular");
+}
+else
+{
+System.out.println("The album is not popular");
+}
+}
+public static void main(String args[])
+{
+Scanner s=new Scanner(System.in);
+Musix m[]=new Musix[5];
+for(int i=0;i<5;i++)
+{
+m[i]=new Musix();
+m[i].read();
+}
+System.out.println("Enter the song name to be searched");
+String b=s.nextLine();
+for(int i=0;i<5;i++)
+{
+try
+{
+m[i].search(b);
+}
+catch(Exception e)
+{
+System.out.println("The song is not present");
+}
+}
+System.out.println("Enter the composer to be searched");
+String c=s.nextLine();
+for(int i=0;i<5;i++)
+{
+if(m[i].Composer.equalsIgnoreCase(c))
+{
+m[i].similarSongs();
+}
+}
+for(int i=0;i<5;i++)
+{
+m[i].popularAlbum();
+}
+}
+}
